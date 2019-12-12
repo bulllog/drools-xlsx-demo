@@ -1,0 +1,44 @@
+//This file is generated from drools engine using xlsx file.
+
+//generated from Decision Table
+import com.wmart.postit_drools.posit.model.LineItemPojo;
+import com.wmart.postit_drools.util.Utility;
+global java.util.List result;
+// rule values at A9, header at A4
+rule "SalesToDept97_DEC"
+	when
+		$item:LineItemPojo($item.getConceptCode() == Utility.getConceptCode("SalesToDept97"), Utility.isDateBefore("01/12/2019"), Utility.isDateAfter("31/12/2019"))
+	then
+		LineItemPojo ni = $item.clone();
+ni.setAccountType("G");
+System.out.println(drools.getRule().getName());
+		ni.setAccountID("4101010");
+		ni.setCostAmount(""+Double.parseDouble($item.getCostAmount())*(50/100.0));
+result.add(ni);
+end
+
+// rule values at A10, header at A4
+rule "SalesToDept97_JAN"
+	when
+		$item:LineItemPojo($item.getConceptCode() == Utility.getConceptCode("SalesToDept97"), Utility.isDateBefore("01/01/2020"), Utility.isDateAfter("31/01/2020"))
+	then
+		LineItemPojo ni = $item.clone();
+ni.setAccountType("G");
+System.out.println(drools.getRule().getName());
+		ni.setAccountID("4101020");
+		ni.setCostAmount(""+Double.parseDouble($item.getCostAmount())*(50/100.0));
+result.add(ni);
+end
+
+// rule values at A11, header at A4
+rule "SalesToDept46"
+	when
+		$item:LineItemPojo($item.getConceptCode() == Utility.getConceptCode("SalesToDept46"))
+	then
+		LineItemPojo ni = $item.clone();
+ni.setAccountType("G");
+System.out.println(drools.getRule().getName());
+		ni.setAccountID("4101010");
+		ni.setCostAmount(""+Double.parseDouble($item.getCostAmount())*(100/100.0));
+result.add(ni);
+end
